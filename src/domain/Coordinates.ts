@@ -4,6 +4,6 @@
  * Obstacle is always a square
  */
 
-class Coordinates {
+export class Coordinates {
   constructor(private x: number = 1, private y: number = 1) {}
 }

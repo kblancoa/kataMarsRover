@@ -1,7 +1,9 @@
+import { Obstacle } from './Obstacle';
+
 /**
  * Entity Rover robot
  */
 
-class Planet {
+export class Planet {
   constructor(private radio: number = 5, obstacles: Obstacle[] = []) {}
 }

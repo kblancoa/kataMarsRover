@@ -4,7 +4,9 @@
  * Obstacle is always a square
  */
 
-class Obstacle {
+import { Coordinates } from './Coordinates';
+
+export class Obstacle {
   constructor(
     private position: Coordinates = new Coordinates(),
     private size: number = 1,
