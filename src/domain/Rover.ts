@@ -8,6 +8,8 @@ import Orientation from "./Orientation";
 import Direction from "./Direction";
 
 
+
+
 export default class Rover {
   constructor(
     private position: Coordinates = new Coordinates(),
@@ -16,7 +18,11 @@ export default class Rover {
   ) {}
 
   move(direction: Direction): Rover {
-    this.position = new Coordinates(0,1);//this.position;
+
+    const movementOrientation = this.orientation === Orientation.North ? 1: -1
+    const movementDirection = direction === Direction.Backward ? -1:1
+    this.position = new Coordinates(0,
+      movementDirection * movementOrientation);
     return this;
   }
   getPosition(): Coordinates {
