@@ -1,4 +1,6 @@
-export enum Move {
+enum Direction {
   Forward = 'f',
   Backward = 'b',
 }
+
+export default Direction;

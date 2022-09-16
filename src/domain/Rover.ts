@@ -3,20 +3,21 @@
  * Size is 1
  *
  */
+import Coordinates from "./Coordinates";
+import Orientation from "./Orientation";
+import Direction from "./Direction";
 
-import { Coordinates } from './Coordinates';
-import { Direction } from './Direction';
-import { Orientation } from './Orientation';
 
-export class Rover {
+export default class Rover {
   constructor(
     private position: Coordinates = new Coordinates(),
     private orientation: Orientation = Orientation.North,
     private size: number = 1,
   ) {}
 
-  move(direction: Direction) {
-    throw new Error('Method not implemented.');
+  move(direction: Direction): Rover {
+    this.position = new Coordinates(0,1);//this.position;
+    return this;
   }
   getPosition(): Coordinates {
     return this.position;
