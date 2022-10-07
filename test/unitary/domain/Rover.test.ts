@@ -33,6 +33,35 @@ describe('Rover tests', () => {
     expect(rover.getOrientation()).toEqual(Orientation.South);
   });
 
+  it('should move to position (1,0) when rover is in position (0,0) and oriented east, and it moves forward', () => {
+    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.East, 1);
+    rover.move(Direction.Forward);
+
+    expect(rover.getPosition()).toEqual(new Coordinates(1, 0));
+    expect(rover.getOrientation()).toEqual(Orientation.East);
+  });
+
+  it('should move to position (-1,0) when rover is in position (0,0) and oriented east, and it moves backward', () => {
+    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.East, 1);
+    rover.move(Direction.Backward);
+    expect(rover.getPosition()).toEqual(new Coordinates(-1, 0));
+    expect(rover.getOrientation()).toEqual(Orientation.East);
+  });
+
+  it('should move to position (-1,0) when rover is in position (0,0) and oriented west, and it moves forward', () => {
+    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.West, 1);
+    rover.move(Direction.Forward);
+    expect(rover.getPosition()).toEqual(new Coordinates(-1, 0));
+    expect(rover.getOrientation()).toEqual(Orientation.West);
+  });
+
+  it('should move to position (1,0) when rover is in position (0,0) and oriented west, and it moves backward', () => {
+    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.West, 1);
+    rover.move(Direction.Backward);
+    expect(rover.getPosition()).toEqual(new Coordinates(1, 0));
+    expect(rover.getOrientation()).toEqual(Orientation.West);
+  });
+
   /*
   it('Turn Rover right', () => {});
 

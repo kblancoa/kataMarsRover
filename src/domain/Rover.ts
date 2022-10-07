@@ -3,12 +3,9 @@
  * Size is 1
  *
  */
-import Coordinates from "./Coordinates";
-import Orientation from "./Orientation";
-import Direction from "./Direction";
-
-
-
+import Coordinates from './Coordinates';
+import Orientation from './Orientation';
+import Direction from './Direction';
 
 export default class Rover {
   constructor(
@@ -18,11 +15,25 @@ export default class Rover {
   ) {}
 
   move(direction: Direction): Rover {
+    const movementOrientation =
+      this.orientation === Orientation.North ||
+      this.orientation === Orientation.East
+        ? 1
+        : -1;
+    const movementDirection = direction === Direction.Backward ? -1 : 1;
+    const movement = movementDirection * movementOrientation;
 
-    const movementOrientation = this.orientation === Orientation.North ? 1: -1
-    const movementDirection = direction === Direction.Backward ? -1:1
-    this.position = new Coordinates(0,
-      movementDirection * movementOrientation);
+    if (
+      this.orientation === Orientation.North ||
+      this.orientation === Orientation.South
+    ) {
+      this.position = new Coordinates(0, movement);
+    } else if (
+      this.orientation === Orientation.East ||
+      this.orientation === Orientation.West
+    ) {
+      this.position = new Coordinates(movement, 0);
+    }
     return this;
   }
   getPosition(): Coordinates {
