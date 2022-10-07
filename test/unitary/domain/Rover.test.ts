@@ -2,8 +2,9 @@ import Rover from '../../../src/domain/Rover';
 import Coordinates from '../../../src/domain/Coordinates';
 import Orientation from '../../../src/domain/Orientation';
 import Direction from '../../../src/domain/Direction';
+import Turn from '../../../src/domain/Turn';
 
-const testCases = [
+const moveTestCases = [
   {
     initialPosition: new Coordinates(0, 0),
     orientation: Orientation.North,
@@ -67,7 +68,7 @@ const testCases = [
     finalPostition: new Coordinates(2, 1),
   },
 ];
-test.each(testCases)(
+test.each(moveTestCases)(
   'should move to position $finalPostition when rover is in position $initialPosition and oriented $orientation, and it moves $direction',
   ({ initialPosition, orientation, direction, finalPostition }) => {
     const rover: Rover = new Rover(initialPosition, orientation, 1);
@@ -77,63 +78,20 @@ test.each(testCases)(
   },
 );
 
-/*describe('Rover tests', () => {
-  it('should move to position (O,1) when rover is in position (0,0) and oriented north, and it moves forward', () => {
-    
-  });
-
-  it('should move to position (O,-1) when rover is in position (0,0) and oriented north, and it moves backward', () => {
-    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.North, 1);
-    rover.move(Direction.Backward);
-    expect(rover.getPosition()).toEqual(new Coordinates(0, -1));
-    expect(rover.getOrientation()).toEqual(Orientation.North);
-  });
-
-  it('should move to position (O,-1) when rover is in position (0,0) and oriented south, and it moves forward', () => {
-    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.South, 1);
-    rover.move(Direction.Forward);
-    expect(rover.getPosition()).toEqual(new Coordinates(0, -1));
-    expect(rover.getOrientation()).toEqual(Orientation.South);
-  });
-
-  it('should move to position (O,1) when rover is in position (0,0) and oriented south, and it moves backward', () => {
-    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.South, 1);
-    rover.move(Direction.Backward);
-    expect(rover.getPosition()).toEqual(new Coordinates(0, 1));
-    expect(rover.getOrientation()).toEqual(Orientation.South);
-  });
-
-  it('should move to position (1,0) when rover is in position (0,0) and oriented east, and it moves forward', () => {
-    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.East, 1);
-    rover.move(Direction.Forward);
-
-    expect(rover.getPosition()).toEqual(new Coordinates(1, 0));
-    expect(rover.getOrientation()).toEqual(Orientation.East);
-  });
-
-  it('should move to position (-1,0) when rover is in position (0,0) and oriented east, and it moves backward', () => {
-    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.East, 1);
-    rover.move(Direction.Backward);
-    expect(rover.getPosition()).toEqual(new Coordinates(-1, 0));
-    expect(rover.getOrientation()).toEqual(Orientation.East);
-  });
-
-  it('should move to position (-1,0) when rover is in position (0,0) and oriented west, and it moves forward', () => {
-    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.West, 1);
-    rover.move(Direction.Forward);
-    expect(rover.getPosition()).toEqual(new Coordinates(-1, 0));
-    expect(rover.getOrientation()).toEqual(Orientation.West);
-  });
-
-  it('should move to position (1,0) when rover is in position (0,0) and oriented west, and it moves backward', () => {
-    const rover: Rover = new Rover(new Coordinates(0, 0), Orientation.West, 1);
-    rover.move(Direction.Backward);
-    expect(rover.getPosition()).toEqual(new Coordinates(1, 0));
-    expect(rover.getOrientation()).toEqual(Orientation.West);
-  });
-*/
-/*
-  it('Turn Rover right', () => {});
-
-  it('Turn Rover left', () => {});
-  */
+const turnTestCases = [
+  {
+    initialOrientation: Orientation.North,
+    turn: Turn.Right,
+    finalOrientation: Orientation.East,
+  },
+];
+test.each(turnTestCases)(
+  'should turn to orientation $finalOrientation when rover is turning $turn and oriented $initialOrientation, and final postion is equal to inital position',
+  ({ initialOrientation, turn, finalOrientation }) => {
+    const initialPosition = new Coordinates(0, 0);
+    const rover: Rover = new Rover(initialPosition, initialOrientation, 1);
+    rover.turn(turn);
+    expect(rover.getPosition()).toEqual(initialPosition);
+    expect(rover.getOrientation()).toEqual(finalOrientation);
+  },
+);

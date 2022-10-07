@@ -6,4 +6,11 @@
 
 export default class Coordinates {
   constructor(private x: number = 1, private y: number = 1) {}
+
+  getX(): number {
+    return this.x;
+  }
+  getY(): number {
+    return this.y;
+  }
 }

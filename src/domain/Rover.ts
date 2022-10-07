@@ -6,6 +6,7 @@
 import Coordinates from './Coordinates';
 import Orientation from './Orientation';
 import Direction from './Direction';
+import Turn from './Turn';
 
 export default class Rover {
   constructor(
@@ -27,13 +28,26 @@ export default class Rover {
       this.orientation === Orientation.North ||
       this.orientation === Orientation.South
     ) {
-      this.position = new Coordinates(0, movement);
+      this.position = new Coordinates(
+        this.position.getX(),
+        this.position.getY() + movement,
+      );
     } else if (
       this.orientation === Orientation.East ||
       this.orientation === Orientation.West
     ) {
-      this.position = new Coordinates(movement, 0);
+      this.position = new Coordinates(
+        this.position.getX() + movement,
+        this.position.getY(),
+      );
     }
+
+    return this;
+  }
+  turn(turn: Turn): Rover {
+    const orientations = Object.values(Orientation);
+    this.orientation = orientations[orientations.indexOf(this.orientation) + 1];
+
     return this;
   }
   getPosition(): Coordinates {
