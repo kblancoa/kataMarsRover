@@ -45,8 +45,12 @@ export default class Rover {
     return this;
   }
   turn(turn: Turn): Rover {
+    const rotate = turn === Turn.Right ? 1 : -1;
     const orientations = Object.values(Orientation);
-    this.orientation = orientations[orientations.indexOf(this.orientation) + 1];
+    this.orientation =
+      orientations[
+        (orientations.indexOf(this.orientation) + rotate) % orientations.length
+      ];
 
     return this;
   }

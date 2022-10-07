@@ -84,6 +84,11 @@ const turnTestCases = [
     turn: Turn.Right,
     finalOrientation: Orientation.East,
   },
+  {
+    initialOrientation: Orientation.North,
+    turn: Turn.Left,
+    finalOrientation: Orientation.West,
+  },
 ];
 test.each(turnTestCases)(
   'should turn to orientation $finalOrientation when rover is turning $turn and oriented $initialOrientation, and final postion is equal to inital position',
